@@ -77,6 +77,35 @@ function criaMulher(request, response) {
     response.json(mulheres);
 }
 
+// PATCH
+function corrigeMulher(request, response) {
+    function encontraMulher(mulher) {
+        if (mulher.id === request.params.id) {
+            return mulher
+        }
+    }
+    const mulherEncontrada = mulheres.find(encontraMulher);
+
+    if (request.body.imagem) {
+        mulherEncontrada.imagem = request.body.imagem;
+    }
+
+    if (request.body.nome) {
+        mulherEncontrada.nome = request.body.nome;
+    }
+
+    if (request.body.descricao) {
+        mulherEncontrada.descricao = request.body.descricao;
+    }
+    
+    if (request.body.citacao) {
+        mulherEncontrada.citacao = request.body.citacao;
+    }
+
+    response.json(mulheres);
+}
+
 app.listen(porta, mostraPorta); //servidor ouvindo a porta
 app.use(router.get('/mulheres', mostraMulheres)); //configuração da rota GET /mulheres
-app.use(router.post('/mulheres', criaMulher)); // configura rota POST / mulheres
+app.use(router.post('/mulheres', criaMulher)); //configura rota POST /mulheres
+app.use(router.patch('/mulheres/:id', corrigeMulher)) //configura a rota PATCH /mulheres/:id
