@@ -5,7 +5,7 @@ const app = express(); //inicia o app
 app.use(express.json()); //
 const porta = 3333; // cria a porta
 
-const conectaBancoDeDados = require('./db'); //liga o banco de dados ao arquivo db.js
+const conectaBancoDeDados = require('./bancoDeDados'); //liga o banco de dados ao arquivo db.js
 conectaBancoDeDados(); // chama a função que conecta o banco de dados
 
 const cors = require('cors') //traz o pacote cors, que peremite cconsumir essa API no front-end
